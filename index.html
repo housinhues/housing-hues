@@ -59,6 +59,11 @@ body{
 .id{display:inline-grid;place-items:center;width:1.45em;height:1.45em;border:1px solid var(--gold);border-radius:50%;color:var(--gold);font-size:.8em;margin:0 .2em;vertical-align:.05em}
 .status{margin-top:clamp(8px,2svh,18px);border:1px dashed var(--line);border-left:3px solid var(--gold);padding:clamp(6px,1.4svh,12px) 16px;font-size:clamp(11px,2.1svh,14px);color:var(--fg)}
 .status .q{color:var(--gold)}
+.contact{margin-top:clamp(8px,2svh,18px);display:flex;align-items:center;justify-content:center;gap:clamp(10px,2vw,18px);flex-wrap:wrap;border:1px dashed var(--line);border-left:3px solid var(--gold);padding:clamp(8px,1.4svh,12px) 16px;font-size:clamp(11px,2.1svh,14px)}
+.contact a{display:inline-flex;align-items:center;gap:6px;color:var(--fg);text-decoration:none;white-space:nowrap}
+.contact a:hover,.contact a:focus-visible{text-decoration:underline;text-underline-offset:3px}
+.contact svg{width:1.1em;height:1.1em;flex:none}
+.instagram svg{color:#e1306c}.facebook svg{color:#1877f2}.email svg{color:#ea4335}.call svg{color:#34a853}
 
 footer{padding-block:0;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;font-size:12px;color:var(--dim);letter-spacing:.08em;text-transform:uppercase}
 
@@ -88,7 +93,24 @@ footer{padding-block:0;display:flex;justify-content:space-between;gap:12px;flex-
     <div class="term-bar"><i></i><i></i><i></i><span>housinghues · services.js</span></div>
     <pre class="code" aria-label="Housing Hues services"><div class="ln"><span class="n">01</span><span>{ id: <span class="id">E</span>, <span class="k">name</span>: <span class="s">'Events'</span> },</span></div><div class="ln"><span class="n">02</span><span>{ id: <span class="id">P</span>, <span class="k">name</span>: <span class="s">'Photography'</span> },</span></div><div class="ln"><span class="n">03</span><span>{ id: <span class="id">S</span>, <span class="k">name</span>: <span class="s">'Social media'</span> },</span></div><div class="ln"><span class="n">04</span><span>{ id: <span class="id">T</span>, <span class="k">name</span>: <span class="s">'Custom tools'</span> },</span></div><div class="ln"><span class="n">05</span><span>{ id: <span class="id">M</span>, <span class="k">name</span>: <span class="s">'Talent'</span> },</span></div><div class="ln"><span class="n">06</span><span>{ id: <span class="id">H</span>, <span class="k">name</span>: <span class="s">'HouseIT · CVs'</span> },</span></div></pre>
   </div>
-  <div class="status"><span class="q">?</span>&nbsp; contact.whatsapp = <span class="g">'ADD NUMBER'</span><span class="cursor"></span></div>
+  <div class="contact" aria-label="Contact Housing Hues">
+    <a class="instagram" href="https://www.instagram.com/housinghues/" target="_blank" rel="noopener" aria-label="Instagram: housinghues">
+      <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"></rect><circle cx="12" cy="12" r="4"></circle><circle cx="17.5" cy="6.5" r=".8" fill="currentColor" stroke="none"></circle></svg>
+      <span>housinghues</span>
+    </a>
+    <a class="facebook" href="https://facebook.com/HousingHues" target="_blank" rel="noopener" aria-label="Facebook: Housing Hues">
+      <svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M13.5 21v-8h2.7l.4-3h-3.1V8.1c0-.9.3-1.6 1.6-1.6h1.7V3.8c-.3 0-1.3-.1-2.4-.1-2.4 0-4 1.5-4 4.1V10H7.7v3h2.7v8h3.1Z"></path></svg>
+      <span>Housing Hues</span>
+    </a>
+    <a class="email" href="mailto:housinghues@gmail.com" aria-label="Email: housinghues@gmail.com">
+      <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"></rect><path d="m4 7 8 6 8-6"></path></svg>
+      <span>housinghues@gmail.com</span>
+    </a>
+    <a class="call" href="tel:+27604561732" aria-label="Call: +27 60 456 1732">
+      <svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M6.6 2.8 9 2.2c.6-.2 1.2.1 1.5.7l1.2 2.9c.2.5.1 1.1-.3 1.5L10 8.7a14.3 14.3 0 0 0 5.3 5.3l1.4-1.4c.4-.4 1-.5 1.5-.3l2.9 1.2c.6.3.9.9.7 1.5l-.6 2.4c-.2.8-.9 1.3-1.7 1.3C10.4 18.7 5.3 13.6 5.3 4.5c0-.8.5-1.5 1.3-1.7Z"></path></svg>
+      <span>Calls: +27 60 456 1732</span>
+    </a>
+  </div>
 </main>
 <div class="wrap"><footer><span>Housing Hues</span><span>Klerksdorp, North West</span><span>Your vision, our architecture.</span></footer></div>
 <div class="scan"></div>
