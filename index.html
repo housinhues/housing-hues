@@ -21,11 +21,11 @@
   color-scheme:dark;
 }
 *{box-sizing:border-box}
-html{height:100%;overflow:hidden}
+html{min-height:100%;overflow-x:hidden}
 body{
   background:var(--bg);color:var(--fg);font-family:var(--mono);font-size:15px;line-height:1.7;margin:0;
   padding-block:0;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));
-  height:100svh;overflow:hidden;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:clamp(10px,2.6svh,24px);
+  min-height:100svh;min-height:100dvh;overflow-x:hidden;overflow-y:auto;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:clamp(10px,2.6svh,24px);
   padding-top:env(safe-area-inset-top,0px);padding-bottom:max(10px,env(safe-area-inset-bottom,0px));
 }
 :focus-visible{outline:2px solid var(--gold);outline-offset:3px}
@@ -76,8 +76,8 @@ footer{padding-block:0;display:flex;justify-content:space-between;gap:12px;flex-
 @keyframes slice-a{0%{clip-path:inset(0 0 100% 0)}10%{clip-path:inset(12% 0 70% 0)}20%{clip-path:inset(55% 0 20% 0)}30%{clip-path:inset(0 0 100% 0)}60%{clip-path:inset(78% 0 6% 0)}70%{clip-path:inset(30% 0 52% 0)}80%{clip-path:inset(0 0 100% 0)}}
 @keyframes slice-b{0%{clip-path:inset(0 0 100% 0)}15%{clip-path:inset(40% 0 38% 0)}25%{clip-path:inset(8% 0 82% 0)}35%{clip-path:inset(0 0 100% 0)}65%{clip-path:inset(62% 0 14% 0)}75%{clip-path:inset(20% 0 66% 0)}85%{clip-path:inset(0 0 100% 0)}}
 @media (prefers-reduced-motion:reduce){.word,.word::before,.word::after,.cursor,.bar,.logo{animation:none}.word::before,.word::after{display:none}}
-@media (max-width:520px){.ln{grid-template-columns:30px minmax(0,1fr)}footer span:nth-child(2){display:none}}
-@media (max-height:520px){footer{display:none}}
+@media (max-width:520px){body{justify-content:flex-start;gap:clamp(12px,3svh,20px);padding-top:max(16px,env(safe-area-inset-top,0px));padding-bottom:max(16px,env(safe-area-inset-bottom,0px))}.ln{grid-template-columns:30px minmax(0,1fr)}.term-bar{padding-inline:10px}.contact{justify-content:flex-start;gap:12px 16px}}
+
 </style>
 </head>
 <body>
@@ -112,7 +112,7 @@ footer{padding-block:0;display:flex;justify-content:space-between;gap:12px;flex-
     </a>
   </div>
 </main>
-<div class="wrap"><footer><span>North West</span><span>Your vision, our architecture.</span></footer></div>
+<div class="wrap"><footer><span>Your vision, our architecture.</span></footer></div>
 <div class="scan"></div>
 <div class="bar"></div>
 </body>
