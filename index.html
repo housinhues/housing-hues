@@ -51,15 +51,22 @@ body{
 .term-bar{display:flex;align-items:center;gap:8px;padding:clamp(6px,1.3svh,10px) 14px;border-bottom:1px solid var(--line);font-size:12px;color:var(--dim)}
 .term-bar i{width:10px;height:10px;border-radius:50%;background:#2a2a2a;display:block}
 .term-bar span{margin-left:8px}
+.cnt{margin-left:auto;white-space:nowrap;font-style:normal;font-size:11px;letter-spacing:.12em;color:var(--gold)}
+.prog{height:2px;background:var(--line)}
+.prog b{display:block;height:100%;width:100%;background:var(--gold);transition:width .5s ease}
+.ln.pending .nm{color:var(--dim)}
+.ln.pending .id{opacity:.25}
+.ln.hit{animation:hit .7s ease-out}
+@keyframes hit{0%{background:rgba(224,177,0,.28)}100%{background:transparent}}
+.cnt.run{animation:blink 1s steps(1) infinite}
 .code{margin:0;padding:clamp(4px,1svh,10px) 0;font-size:clamp(11px,min(3.1vw,2.1svh),14px);overflow-x:hidden;font:inherit;white-space:normal}
 .ln{display:grid;grid-template-columns:38px minmax(0,1fr);gap:0;padding:clamp(1px,.5svh,3px) 14px clamp(1px,.5svh,3px) 0;white-space:normal;word-break:break-word}
 .ln:hover{background:rgba(224,177,0,.07)}
 .ln .n{text-align:right;padding-right:10px;white-space:nowrap;color:#4a4a4a;user-select:none}
 .k{color:var(--c2)}.s{color:var(--c3)}.g{color:var(--gold)}.d{color:var(--dim)}
 .id{display:inline-grid;place-items:center;width:1.45em;height:1.45em;border:1px solid var(--gold);border-radius:50%;color:var(--gold);font-size:.8em;margin:0 .2em;vertical-align:.05em}
-.status{margin-top:clamp(8px,2svh,18px);border:1px dashed var(--line);border-left:3px solid var(--gold);padding:clamp(6px,1.4svh,12px) 16px;font-size:clamp(11px,2.1svh,14px);color:var(--fg)}
-.status .q{color:var(--gold)}
-.contact{margin-top:clamp(8px,2svh,18px);display:flex;align-items:center;justify-content:center;gap:clamp(10px,2vw,18px);flex-wrap:wrap;border:1px dashed var(--line);border-left:3px solid var(--gold);padding:clamp(8px,1.4svh,12px) 16px;font-size:clamp(11px,2.1svh,14px)}
+.contact{margin-top:clamp(8px,2svh,18px);display:flex;align-items:center;justify-content:center;gap:clamp(10px,2vw,18px);flex-wrap:wrap;border:1px dashed var(--line);border-left:3px solid var(--gold);padding:clamp(8px,1.4svh,12px) 16px;font-size:clamp(11px,2.1svh,14px);transition:opacity .6s ease}
+.contact.pending{opacity:0}
 .contact a{display:inline-flex;align-items:center;gap:6px;color:var(--fg);text-decoration:none;white-space:nowrap}
 .contact a:hover,.contact a:focus-visible{text-decoration:underline;text-underline-offset:3px}
 .contact svg{width:1.1em;height:1.1em;flex:none}
@@ -75,9 +82,8 @@ footer{padding-block:0;display:flex;justify-content:space-between;gap:12px;flex-
 @keyframes jolt{0%,91%,100%{transform:none}92%{transform:translate(-6px,1px) skewX(-6deg)}94%{transform:translate(5px,-2px) skewX(4deg)}96%{transform:translate(-2px,0)}}
 @keyframes slice-a{0%{clip-path:inset(0 0 100% 0)}10%{clip-path:inset(12% 0 70% 0)}20%{clip-path:inset(55% 0 20% 0)}30%{clip-path:inset(0 0 100% 0)}60%{clip-path:inset(78% 0 6% 0)}70%{clip-path:inset(30% 0 52% 0)}80%{clip-path:inset(0 0 100% 0)}}
 @keyframes slice-b{0%{clip-path:inset(0 0 100% 0)}15%{clip-path:inset(40% 0 38% 0)}25%{clip-path:inset(8% 0 82% 0)}35%{clip-path:inset(0 0 100% 0)}65%{clip-path:inset(62% 0 14% 0)}75%{clip-path:inset(20% 0 66% 0)}85%{clip-path:inset(0 0 100% 0)}}
-@media (prefers-reduced-motion:reduce){.word,.word::before,.word::after,.cursor,.bar,.logo{animation:none}.word::before,.word::after{display:none}}
+@media (prefers-reduced-motion:reduce){.cnt.run,.ln.hit,.word,.word::before,.word::after,.cursor,.bar,.logo{animation:none}.word::before,.word::after{display:none}}
 @media (max-width:520px){body{justify-content:flex-start;gap:clamp(12px,3svh,20px);padding-top:max(16px,env(safe-area-inset-top,0px));padding-bottom:max(16px,env(safe-area-inset-bottom,0px))}.ln{grid-template-columns:30px minmax(0,1fr)}.term-bar{padding-inline:10px}.contact{justify-content:flex-start;gap:12px 16px}}
-
 </style>
 </head>
 <body>
@@ -88,10 +94,12 @@ footer{padding-block:0;display:flex;justify-content:space-between;gap:12px;flex-
     <p class="sub">// Creative &amp; Operational Agency</p>
   </div>
 </section>
+
 <main class="wrap">
   <div class="term">
-    <div class="term-bar"><i></i><i></i><i></i><span>housinghues · services.js</span></div>
-    <pre class="code" aria-label="Housing Hues services"><div class="ln"><span class="n">01</span><span>{ id: <span class="id">E</span>, <span class="k">name</span>: <span class="s">'Events'</span> },</span></div><div class="ln"><span class="n">02</span><span>{ id: <span class="id">P</span>, <span class="k">name</span>: <span class="s">'Photography'</span> },</span></div><div class="ln"><span class="n">03</span><span>{ id: <span class="id">S</span>, <span class="k">name</span>: <span class="s">'Social media'</span> },</span></div><div class="ln"><span class="n">04</span><span>{ id: <span class="id">T</span>, <span class="k">name</span>: <span class="s">'Custom tools'</span> },</span></div><div class="ln"><span class="n">05</span><span>{ id: <span class="id">M</span>, <span class="k">name</span>: <span class="s">'Talent'</span> },</span></div></pre>
+    <div class="term-bar"><i></i><i></i><i></i><span>announcement.js</span><em id="cnt" class="cnt">● LIVE 05/05</em></div>
+    <div class="prog"><b id="prog"></b></div>
+    <pre class="code" aria-label="Housing Hues services"><div class="ln"><span class="n">01</span><span>{ id: <span class="id">E</span>, <span class="k">name</span>: <span class="s">'<span class="nm">Events</span>'</span> },</span></div><div class="ln"><span class="n">02</span><span>{ id: <span class="id">P</span>, <span class="k">name</span>: <span class="s">'<span class="nm">Photography</span>'</span> },</span></div><div class="ln"><span class="n">03</span><span>{ id: <span class="id">S</span>, <span class="k">name</span>: <span class="s">'<span class="nm">Social media</span>'</span> },</span></div><div class="ln"><span class="n">04</span><span>{ id: <span class="id">T</span>, <span class="k">name</span>: <span class="s">'<span class="nm">Custom tools</span>'</span> },</span></div><div class="ln"><span class="n">05</span><span>{ id: <span class="id">M</span>, <span class="k">name</span>: <span class="s">'<span class="nm">Talent</span>'</span> },</span></div></pre>
   </div>
   <div class="contact" aria-label="Contact Housing Hues">
     <a class="instagram" href="https://www.instagram.com/housinghues/" target="_blank" rel="noopener" aria-label="Instagram: housinghues">
@@ -112,7 +120,34 @@ footer{padding-block:0;display:flex;justify-content:space-between;gap:12px;flex-
     </a>
   </div>
 </main>
+
 <div class="wrap"><footer><span>Your vision, our architecture.</span></footer></div>
+<script>
+(function(){
+  var lines=[].slice.call(document.querySelectorAll('.ln')),
+      nms=lines.map(function(l){return l.querySelector('.nm')}),
+      finals=nms.map(function(n){return n.textContent}),
+      cnt=document.getElementById('cnt'),prog=document.getElementById('prog'),
+      status=document.querySelector('.contact'),total=lines.length,
+      G='█▓▒░#$%&@?!<>/';
+  if(window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches)return;
+  function pad(n){return n<10?'0'+n:''+n}
+  function show(n,live){cnt.textContent='● '+(live?'ANNOUNCING ':'LIVE ')+pad(n)+'/'+pad(total);cnt.className='cnt'+(live?' run':'');prog.style.width=(n/total*100)+'%'}
+  lines.forEach(function(l,i){nms[i].textContent=finals[i].replace(/[^ ]/g,'█');l.classList.add('pending')});
+  status.classList.add('pending');prog.style.transition='none';prog.style.width='0%';
+  setTimeout(function(){prog.style.transition='';show(0,true);next(0)},1100);
+  function next(i){
+    if(i>=total){show(total,false);setTimeout(function(){status.classList.remove('pending')},350);return}
+    var f=finals[i],t=0;
+    var iv=setInterval(function(){
+      t++;var o='';
+      for(var k=0;k<f.length;k++){o+=(k<t-5||f[k]===' ')?f[k]:G.charAt(Math.random()*G.length|0)}
+      nms[i].textContent=o;
+      if(t>=f.length+5){clearInterval(iv);nms[i].textContent=f;lines[i].classList.remove('pending');lines[i].classList.add('hit');show(i+1,true);setTimeout(function(){next(i+1)},420)}
+    },42);
+  }
+})();
+</script>
 <div class="scan"></div>
 <div class="bar"></div>
 </body>
