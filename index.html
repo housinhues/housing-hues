@@ -51,7 +51,7 @@ body{
 .term-bar{display:flex;align-items:center;gap:8px;padding:clamp(6px,1.3svh,10px) 14px;border-bottom:1px solid var(--line);font-size:12px;color:var(--dim)}
 .term-bar i{width:10px;height:10px;border-radius:50%;background:#2a2a2a;display:block}
 .term-bar span{margin-left:8px}
-.cnt{margin-left:auto;white-space:nowrap;font-style:normal;font-size:11px;letter-spacing:.12em;color:var(--gold)}
+.cnt{margin-left:auto;white-space:nowrap;font-style:normal;font-size:11px;letter-spacing:.12em;color:#2f7bff}.cnt.red{color:#ff3b3b}
 .prog{height:2px;background:var(--line)}
 .prog b{display:block;height:100%;width:100%;background:var(--gold);transition:width .5s ease}
 .ln.pending .nm{color:var(--dim)}
@@ -138,7 +138,7 @@ footer{padding-block:0;display:flex;justify-content:space-between;gap:12px;flex-
       G='█▓▒░#$%&@?!<>/';
   if(window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches)return;
   function pad(n){return n<10?'0'+n:''+n}
-  function show(n,live){cnt.textContent='● '+(live?'ANNOUNCING ':'LIVE ')+pad(n)+'/'+pad(total);cnt.className='cnt'+(live?' run':'');prog.style.width=(n/total*100)+'%'}
+  function show(n,live){cnt.textContent='● '+(live?'ANNOUNCING ':'LIVE ')+pad(n)+'/'+pad(total);cnt.className='cnt'+(live?' run':'')+(n<total?' red':'');prog.style.width=(n/total*100)+'%'}
   lines.forEach(function(l,i){nms[i].textContent=finals[i].replace(/[^ ]/g,'█');l.classList.add('pending')});
   status.classList.add('pending');prog.style.transition='none';prog.style.width='0%';
   setTimeout(function(){prog.style.transition='';show(0,true);next(0)},1100);
