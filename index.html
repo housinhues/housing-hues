@@ -98,6 +98,27 @@ footer{padding-block:0;display:flex;justify-content:center;text-align:center;gap
 @keyframes slice-b{0%{clip-path:inset(0 0 100% 0)}15%{clip-path:inset(40% 0 38% 0)}25%{clip-path:inset(8% 0 82% 0)}35%{clip-path:inset(0 0 100% 0)}65%{clip-path:inset(62% 0 14% 0)}75%{clip-path:inset(20% 0 66% 0)}85%{clip-path:inset(0 0 100% 0)}}
 @media (prefers-reduced-motion:reduce){.cnt.run,.ln.hit,.word,.wordmark-cursor,.bar,.logo{animation:none}.contact-label .online::before{animation:none}.contact:not(.pending) .contact-link{animation:none}}
 @media (max-width:520px){body{justify-content:flex-start;gap:clamp(12px,3svh,20px);padding-top:max(16px,env(safe-area-inset-top,0px));padding-bottom:max(16px,env(safe-area-inset-bottom,0px))}.ln{grid-template-columns:30px minmax(0,1fr)}.term-bar{padding-inline:10px}.contact-links{grid-template-columns:repeat(2,minmax(0,1fr))}}
+
+/* full-page lettering background, services box transparent */
+:root{--bg:#eeeae0;color-scheme:light}
+html{background:var(--bg) url('housing-hues-hero-background.jpg') center top/cover no-repeat fixed}
+body{background:transparent;color:#342820}
+.hero{width:100%;aspect-ratio:auto;background:none}
+.stack{position:static}
+.term{background:transparent;border-color:transparent}
+.term-bar,.ln summary,.ln .n,.dr,.cnt,footer{text-shadow:0 0 2px #eeeae0,0 0 4px #eeeae0,0 0 8px #eeeae0,0 0 12px #eeeae0}
+.term-bar{color:#342820;border-bottom-color:rgba(52,40,32,.55)}
+.term-bar i{background:rgba(52,40,32,.55)}
+.ln .n{color:#5b4636}
+.ln .s,.ln .nm,.ln.pending .nm{color:#1b110a;font-weight:500}
+.ln .id{border-color:#6b4a00;color:#4a3300;background:rgba(238,234,224,.92);text-shadow:none}
+.ln summary::after{color:#342820}
+.ln:hover{background:rgba(52,40,32,.08)}
+.dr{color:#2a1d14;border-left-color:rgba(52,40,32,.55)}
+.dr a{color:#6b4a00;font-weight:500}
+.cnt .lv,.cnt .live-label{color:#2d7a10;font-weight:700}.cnt .num{color:#1f5fe0}.cnt.red{color:#d11f1f}.cnt{color:#1f5fe0}
+.prog b{background:#6b4a00}
+footer{color:#4a3829}
 </style>
 </head>
 <body>
