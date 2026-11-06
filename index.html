@@ -45,9 +45,9 @@ body{
 /* terminal */
 .wrap{flex:none;width:100%;max-width:760px;margin-inline:auto;padding-bottom:0}
 .term{background:transparent;color:var(--fg);border:1px solid transparent;border-radius:6px;overflow:hidden}
-.term-bar{display:flex;align-items:center;gap:8px;padding:clamp(6px,1.3svh,10px) 14px;border-bottom:1px solid var(--line);font-size:12px;color:var(--dim)}
+.term-bar{display:flex;align-items:center;gap:8px;padding:clamp(8px,1.5svh,12px) 14px;border-bottom:1px solid var(--line);font-size:12px;color:var(--dim)}
 .term-bar i{width:10px;height:10px;border-radius:50%;background:#2a2a2a;display:block}
-.term-bar span{margin-left:8px}
+.term-title{margin:0 0 0 8px;color:#fff;font-size:12px;font-weight:500;letter-spacing:.08em;text-transform:uppercase}.term-bar .cnt{margin-left:auto;font-style:normal;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:#fff}
 .cnt{margin-left:auto;white-space:nowrap;font-style:normal;font-size:11px;letter-spacing:.12em;color:#2f7bff}.cnt.red{color:#ff3b3b}.cnt .live-label{color:var(--c3)}.cnt .num{color:#2f7bff;font-weight:inherit}
 .prog{height:2px;background:var(--line)}
 .prog b{display:block;height:100%;width:100%;background:var(--gold);transition:width .5s ease}
@@ -56,13 +56,16 @@ body{
 .ln.hit{animation:hit .7s ease-out}
 @keyframes hit{0%{background:rgba(224,177,0,.28)}100%{background:transparent}}
 .cnt.run{animation:blink 1s steps(1) infinite}
-.code{margin:0;padding:clamp(4px,1svh,10px) 0;font-size:clamp(11px,min(3.1vw,2.1svh),14px);overflow-x:hidden;font:inherit;white-space:normal}
-.ln{display:grid;grid-template-columns:38px minmax(0,1fr);gap:0;padding:clamp(1px,.5svh,3px) 14px clamp(1px,.5svh,3px) 0;white-space:normal;word-break:break-word}
+.code{margin:0;padding:clamp(8px,1.5svh,14px) 0;font-size:clamp(11px,min(3.1vw,2.1svh),14px);overflow-x:hidden;font:inherit;white-space:normal}
+.ln{display:grid;grid-template-columns:38px minmax(0,1fr);gap:0;padding:clamp(1px,.5svh,3px) 14px clamp(1px,.5svh,3px) 0;white-space:normal;word-break:break-word;transition:background-color .16s ease,box-shadow .16s ease}
+.ln:active{background:rgba(224,177,0,.16);box-shadow:inset 2px 0 var(--gold)}
 .ln:hover{background:rgba(224,177,0,.07)}
 .ln .n{text-align:right;padding-right:10px;white-space:nowrap;color:#4a4a4a;user-select:none}
 .k{color:var(--c2)}.s{color:var(--c3)}.g{color:var(--gold)}.d{color:var(--dim)}
 .ln a{color:inherit;text-decoration:none}.ln a:hover,.ln a:focus-visible{text-decoration:underline;text-underline-offset:3px}
-.ln details{min-width:0}.ln summary{cursor:pointer;list-style:none}.ln summary::-webkit-details-marker{display:none}
+.ln details{min-width:0}.ln summary{cursor:pointer;list-style:none;display:flex;align-items:center;gap:10px;padding:5px 12px 5px 0;color:#fff;text-shadow:0 1px 5px #000}.ln summary::-webkit-details-marker{display:none}.ln summary:focus-visible{outline:2px solid var(--gold);outline-offset:2px}.ln details[open] summary{color:#ffd23d;background-color:rgba(224,177,0,.08)}.ln .nm{font-weight:600}
+.ln details[open] .dr{animation:details-in .18s ease-out both}
+@keyframes details-in{from{opacity:.72;transform:translateY(-3px)}to{opacity:1;transform:translateY(0)}}
 .ln summary::after{content:' +';color:var(--dim)}.ln details[open] summary::after{content:' −'}
 @media (max-width:520px){.sx{display:none}.ln .id{margin:0 .6em 0 0}.ln summary{font-size:1.05em}.ln summary::after{float:right}}
 .dr{margin:4px 0 8px;padding-left:14px;border-left:1px solid var(--line);font-size:.92em;color:var(--dim)}
@@ -74,10 +77,10 @@ body{
 .contact-label{display:flex;align-items:center;justify-content:space-between;gap:12px;color:var(--dim);font:500 9px/1.2 "JetBrains Mono",monospace;letter-spacing:.15em;text-transform:uppercase}
 .contact-label .online{display:inline-flex;align-items:center;gap:6px;color:var(--gold);letter-spacing:.1em}
 .contact-label .online::before{content:"";width:6px;height:6px;border-radius:50%;background:#74e3a1;box-shadow:0 0 9px #74e3a1;animation:signal 1.6s ease-in-out infinite}
-.contact-links{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:7px;margin-top:9px}
+.contact-links{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:7px;margin-top:9px}
 .contact-link{position:relative;display:flex;min-width:0;align-items:center;justify-content:center;gap:7px;padding:9px 8px;border:1px solid rgba(255,255,255,.09);background:rgba(255,255,255,.035);color:var(--fg);font-size:clamp(10px,1.75svh,13px);text-decoration:none;white-space:nowrap;overflow:hidden;transition:background .2s ease,border-color .2s ease,transform .2s ease,box-shadow .2s ease}
 .contact:not(.pending) .contact-link{animation:channel-in .65s cubic-bezier(.2,.85,.25,1) both}
-.contact:not(.pending) .contact-link:nth-child(2){animation-delay:.12s}.contact:not(.pending) .contact-link:nth-child(3){animation-delay:.24s}.contact:not(.pending) .contact-link:nth-child(4){animation-delay:.36s}
+.contact:not(.pending) .contact-link:nth-child(2){animation-delay:.08s}.contact:not(.pending) .contact-link:nth-child(3){animation-delay:.16s}.contact:not(.pending) .contact-link:nth-child(4){animation-delay:.24s}.contact:not(.pending) .contact-link:nth-child(5){animation-delay:.32s}
 .contact-link span{min-width:0;overflow:hidden;text-overflow:ellipsis}
 .contact-link:hover,.contact-link:focus-visible{transform:translateY(-2px);background:rgba(255,196,87,.1);border-color:color-mix(in srgb,var(--gold) 65%,transparent);box-shadow:0 5px 18px rgba(255,196,87,.1);outline:none}
 .contact-link:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
@@ -89,15 +92,15 @@ body{
 footer{padding-block:0;display:flex;justify-content:center;text-align:center;gap:12px;flex-wrap:wrap;font-size:12px;color:var(--dim);letter-spacing:.08em;text-transform:uppercase}
 
 /* scanlines */
-.scan{position:fixed;inset:0;pointer-events:none;background:repeating-linear-gradient(to bottom,transparent 0 2px,rgba(255,255,255,.04) 2px 3px)}
-.bar{position:fixed;left:0;right:0;height:14vh;top:-20vh;pointer-events:none;background:linear-gradient(to bottom,transparent,rgba(255,255,255,.06),transparent);animation:roll 5.5s linear infinite}
+.scan{position:fixed;inset:0;pointer-events:none;background:repeating-linear-gradient(to bottom,transparent 0 3px,rgba(255,255,255,.018) 3px 4px)}
+.bar{position:fixed;left:0;right:0;height:14vh;top:-20vh;pointer-events:none;background:linear-gradient(to bottom,transparent,rgba(255,255,255,.035),transparent);animation:roll 16s linear infinite}
 @keyframes blink{50%{opacity:0}}
 @keyframes roll{to{top:120vh}}
 @keyframes jolt{0%,91%,100%{transform:none}92%{transform:translate(-6px,1px) skewX(-6deg)}94%{transform:translate(5px,-2px) skewX(4deg)}96%{transform:translate(-2px,0)}}
 @keyframes slice-a{0%{clip-path:inset(0 0 100% 0)}10%{clip-path:inset(12% 0 70% 0)}20%{clip-path:inset(55% 0 20% 0)}30%{clip-path:inset(0 0 100% 0)}60%{clip-path:inset(78% 0 6% 0)}70%{clip-path:inset(30% 0 52% 0)}80%{clip-path:inset(0 0 100% 0)}}
 @keyframes slice-b{0%{clip-path:inset(0 0 100% 0)}15%{clip-path:inset(40% 0 38% 0)}25%{clip-path:inset(8% 0 82% 0)}35%{clip-path:inset(0 0 100% 0)}65%{clip-path:inset(62% 0 14% 0)}75%{clip-path:inset(20% 0 66% 0)}85%{clip-path:inset(0 0 100% 0)}}
-@media (prefers-reduced-motion:reduce){.cnt.run,.ln.hit,.word,.wordmark-cursor,.bar,.logo{animation:none}.contact-label .online::before{animation:none}.contact:not(.pending) .contact-link{animation:none}}
-@media (max-width:520px){body{justify-content:flex-start;gap:clamp(12px,3svh,20px);padding-top:max(16px,env(safe-area-inset-top,0px));padding-bottom:max(16px,env(safe-area-inset-bottom,0px))}.ln{grid-template-columns:30px minmax(0,1fr)}.term-bar{padding-inline:10px}.contact-links{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (prefers-reduced-motion:reduce){.cnt.run,.ln.hit,.word,.wordmark-cursor,.bar,.logo,.ln details[open] .dr{animation:none}.contact-label .online::before{animation:none}.contact:not(.pending) .contact-link{animation:none}}
+@media (max-width:520px){body{justify-content:flex-start;gap:clamp(12px,3svh,20px);padding-top:max(16px,env(safe-area-inset-top,0px));padding-bottom:max(16px,env(safe-area-inset-bottom,0px))}.ln{grid-template-columns:30px minmax(0,1fr)}.term-bar{padding-inline:10px}.term-bar .cnt{font-size:9px}.contact-links{grid-template-columns:repeat(2,minmax(0,1fr))}}
 
 /* full-page lettering background, services box transparent, vivid text with dark halo */
 :root{--bg:#eeeae0;color-scheme:light}
@@ -133,9 +136,16 @@ footer{color:#342820}
 
 <main class="wrap">
   <div class="term">
-    <div class="term-bar"><i></i><i></i><i></i><span>our stuff</span><em id="cnt" class="cnt"><span class="live-label">● LIVE</span> <b class="num">07</b>/07</em></div>
-    <div class="prog"><b id="prog"></b></div>
-    <pre class="code" aria-label="Housing Hues services"><div class="ln"><span class="n">01</span><details><summary><span class="sx">{ id: </span><span class="id">E</span><span class="sx">, <span class="k">name</span>: </span><span class="s"><span class="sx">'</span><span class="nm">Events</span><span class="sx">'</span></span><span class="sx"> },</span></summary><div class="dr"><p>Event production, promotion and live experiences.</p><p><strong>UP NEXT //</strong> Klerksdorp Summer Blow</p><p>19 Dec 2026 · Thys Joint, New Axis</p><a href="https://www.instagram.com/mrwaitsi_/p/DfP0VzdOXqB/?hl=en" target="_blank" rel="noopener">Event announcement ↗</a> <a href="https://www.instagram.com/sfi.lata/" target="_blank" rel="noopener">@sfi.lata →</a></div></details></div><div class="ln"><span class="n">02</span><details><summary><span class="sx">{ id: </span><span class="id">P</span><span class="sx">, <span class="k">name</span>: </span><span class="s"><span class="sx">'</span><span class="nm">Photography</span><span class="sx">'</span></span><span class="sx"> },</span></summary><div class="dr"><p>Shoots, portraits and campaign photography.</p><a href="https://www.instagram.com/018productions/" target="_blank" rel="noopener">@018productions →</a></div></details></div><div class="ln"><span class="n">03</span><details><summary><span class="sx">{ id: </span><span class="id">B</span><span class="sx">, <span class="k">name</span>: </span><span class="s"><span class="sx">'</span><span class="nm">Branding</span><span class="sx">'</span></span><span class="sx"> },</span></summary><div class="dr"><p>Logos, colour palettes, posters and visual edits.</p><a href="branding.html">See the work →</a></div></details></div><div class="ln"><span class="n">04</span><details><summary><span class="sx">{ id: </span><span class="id">S</span><span class="sx">, <span class="k">name</span>: </span><span class="s"><span class="sx">'</span><span class="nm">Social media</span><span class="sx">'</span></span><span class="sx"> },</span></summary><div class="dr"><p>We run social pages for brands and creators.</p><p class="pg"><a href="https://www.instagram.com/easychanaa/" target="_blank" rel="noopener">Easy Chanaa ↗</a> <a href="https://www.instagram.com/housinghues/" target="_blank" rel="noopener">Housing Hues ↗</a></p></div></details></div><div class="ln"><span class="n">05</span><details><summary><span class="sx">{ id: </span><span class="id">W</span><span class="sx">, <span class="k">name</span>: </span><span class="s"><span class="sx">'</span><span class="nm">Websites &amp; tools</span><span class="sx">'</span></span><span class="sx"> },</span></summary><div class="dr"><p>Websites, funnels and custom software.</p><p class="pg"><a href="https://www.instagram.com/huesinit/" target="_blank" rel="noopener">@huesinit ↗</a><a href="https://facebook.com/Huesit" target="_blank" rel="noopener">Huesit (Facebook) ↗</a></p></div></details></div><div class="ln"><span class="n">06</span><details><summary><span class="sx">{ id: </span><span class="id">T</span><span class="sx">, <span class="k">name</span>: </span><span class="s"><span class="sx">'</span><span class="nm">Talent</span><span class="sx">'</span></span><span class="sx"> },</span></summary><div class="dr"><p>Models and artists we manage.</p><a href="talent.html">Meet the talent →</a></div></details></div><div class="ln"><span class="n">07</span><details><summary><span class="sx">{ id: </span><span class="id">C</span><span class="sx">, <span class="k">name</span>: </span><span class="s"><span class="sx">'</span><span class="nm">Collaborations</span><span class="sx">'</span></span><span class="sx"> },</span></summary><div class="dr"><p>People and brands we've worked with, and the posts to prove it.</p><a href="collabs.html">See collaborations →</a></div></details></div></pre>
+    <div class="term-bar"><i></i><i></i><i></i><h2 class="term-title">Our capabilities</h2><span class="cnt">07 service areas</span></div>
+    <section class="code" aria-label="Housing Hues service areas">
+      <div class="ln"><span class="n">01</span><details><summary><span class="id">B</span><span class="s"><span class="nm">Branding</span></span></summary><div class="dr"><p>Brand identity, visual systems, campaign creative, character design, AI-assisted content and brand world-building.</p><a href="branding.html">Explore the branding work →</a></div></details></div>
+      <div class="ln"><span class="n">02</span><details><summary><span class="id">W</span><span class="s"><span class="nm">Brand &amp; Digital</span></span></summary><div class="dr"><p>Websites, funnels, custom tools, custom software and practical digital marketing playbooks.</p><a href="https://www.instagram.com/houseforit/" target="_blank" rel="noopener">House For It — digital tools ↗</a></div></details></div>
+      <div class="ln"><span class="n">03</span><details><summary><span class="id">E</span><span class="s"><span class="nm">Events</span></span></summary><div class="dr"><p>Event production, promotion and live experiences.</p><p><strong>UP NEXT //</strong> Klerksdorp Summer Blow · 19 Dec 2026 · Thys Joint, New Axis</p><a href="https://www.instagram.com/mrwaitsi_/p/DfP0VzdOXqB/?hl=en" target="_blank" rel="noopener">Event announcement ↗</a> <a href="https://www.instagram.com/sfi.lata/" target="_blank" rel="noopener">@sfi.lata →</a></div></details></div>
+      <div class="ln"><span class="n">04</span><details><summary><span class="id">P</span><span class="s"><span class="nm">Photography</span></span></summary><div class="dr"><p>Shoots, portraits and campaign photography.</p><a href="https://www.instagram.com/018productions/" target="_blank" rel="noopener">@018productions →</a></div></details></div>
+      <div class="ln"><span class="n">05</span><details><summary><span class="id">S</span><span class="s"><span class="nm">Social media</span></span></summary><div class="dr"><p>Social content and page management for brands and creators.</p><p class="pg"><a href="https://www.instagram.com/easychanaa/" target="_blank" rel="noopener">Easy Chanaa ↗</a> <a href="https://www.instagram.com/housinghues/" target="_blank" rel="noopener">Housing Hues ↗</a></p></div></details></div>
+      <div class="ln"><span class="n">06</span><details><summary><span class="id">T</span><span class="s"><span class="nm">Talent</span></span></summary><div class="dr"><p>Models and artists we manage.</p><a href="talent.html">Meet the talent →</a></div></details></div>
+      <div class="ln"><span class="n">07</span><details><summary><span class="id">C</span><span class="s"><span class="nm">Collaborations</span></span></summary><div class="dr"><p>People and brands we've worked with, and the posts to prove it.</p><a href="collabs.html">See collaborations →</a></div></details></div>
+    </section>
   </div>
   <div class="contact" aria-label="Contact Housing Hues">
     <div class="contact-label"><span>Direct line // HH-01</span><span class="online">Channels open</span></div>
@@ -143,6 +153,10 @@ footer{color:#342820}
     <a class="contact-link instagram" href="https://www.instagram.com/housinghues/" target="_blank" rel="noopener" aria-label="Instagram: housinghues">
       <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"></rect><circle cx="12" cy="12" r="4"></circle><circle cx="17.5" cy="6.5" r=".8" fill="currentColor" stroke="none"></circle></svg>
       <span>housinghues</span>
+    </a>
+    <a class="contact-link instagram" href="https://www.instagram.com/houseforit/" target="_blank" rel="noopener" aria-label="Instagram: House For It">
+      <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"></rect><circle cx="12" cy="12" r="4"></circle><circle cx="17.5" cy="6.5" r=".8" fill="currentColor" stroke="none"></circle></svg>
+      <span>House For It</span>
     </a>
     <a class="contact-link facebook" href="https://facebook.com/HousingHues" target="_blank" rel="noopener" aria-label="Facebook: Housing Hues">
       <svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M13.5 21v-8h2.7l.4-3h-3.1V8.1c0-.9.3-1.6 1.6-1.6h1.7V3.8c-.3 0-1.3-.1-2.4-.1-2.4 0-4 1.5-4 4.1V10H7.7v3h2.7v8h3.1Z"></path></svg>
@@ -163,28 +177,17 @@ footer{color:#342820}
 <div class="wrap"><footer><span>Your vision, our architecture.</span></footer></div>
 <script>
 (function(){
-  var lines=[].slice.call(document.querySelectorAll('.ln')),
-      nms=lines.map(function(l){return l.querySelector('.nm')}),
-      finals=nms.map(function(n){return n.textContent}),
-      cnt=document.getElementById('cnt'),prog=document.getElementById('prog'),
-      status=document.querySelector('.contact'),total=lines.length,
-      G='█▓▒░#$%&@?!<>/';
-  if(window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches)return;
-  function pad(n){return n<10?'0'+n:''+n}
-  function show(n,live){cnt.innerHTML='<span class="live-label">● LIVE</span> <b class="num">'+pad(n)+'</b>/'+pad(total);cnt.className='cnt'+(live?' run':'')+(n<total?' red':'');prog.style.width=(n/total*100)+'%'}
-  lines.forEach(function(l,i){nms[i].textContent=finals[i].replace(/[^ ]/g,'█');l.classList.add('pending')});
-  status.classList.add('pending');prog.style.transition='none';prog.style.width='0%';
-  setTimeout(function(){prog.style.transition='';show(0,true);next(0)},1100);
-  function next(i){
-    if(i>=total){show(total,false);setTimeout(function(){status.classList.remove('pending')},350);return}
-    var f=finals[i],t=0;
-    var iv=setInterval(function(){
-      t++;var o='';
-      for(var k=0;k<f.length;k++){o+=(k<t-5||f[k]===' ')?f[k]:G.charAt(Math.random()*G.length|0)}
-      nms[i].textContent=o;
-      if(t>=f.length+5){clearInterval(iv);nms[i].textContent=f;lines[i].classList.remove('pending');lines[i].classList.add('hit');show(i+1,true);setTimeout(function(){next(i+1)},420)}
-    },42);
+  var count=document.querySelector('.cnt'), total=document.querySelectorAll('.ln').length;
+  if(!count || !total || (window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches)) return;
+  var current=0;
+  count.textContent='0' + total + ' service areas';
+  function step(){
+    current++;
+    count.textContent='0' + current + ' / 0' + total;
+    if(current < total) setTimeout(step, 55);
+    else setTimeout(function(){ count.textContent='0' + total + ' service areas'; }, 180);
   }
+  setTimeout(step, 80);
 })();
 </script>
 <div class="scan"></div>
