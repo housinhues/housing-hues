@@ -77,7 +77,7 @@ body{
 .contact-label{display:flex;align-items:center;justify-content:space-between;gap:12px;color:var(--dim);font:500 9px/1.2 "JetBrains Mono",monospace;letter-spacing:.15em;text-transform:uppercase}
 .contact-label .online{display:inline-flex;align-items:center;gap:6px;color:var(--gold);letter-spacing:.1em}
 .contact-label .online::before{content:"";width:6px;height:6px;border-radius:50%;background:#74e3a1;box-shadow:0 0 9px #74e3a1;animation:signal 1.6s ease-in-out infinite}
-.contact-links{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:7px;margin-top:9px}
+.contact-links{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:7px;margin-top:9px}
 .contact-link{position:relative;display:flex;min-width:0;align-items:center;justify-content:center;gap:7px;padding:9px 8px;border:1px solid rgba(255,255,255,.09);background:rgba(255,255,255,.035);color:var(--fg);font-size:clamp(10px,1.75svh,13px);text-decoration:none;white-space:nowrap;overflow:hidden;transition:background .2s ease,border-color .2s ease,transform .2s ease,box-shadow .2s ease}
 .contact:not(.pending) .contact-link{animation:channel-in .65s cubic-bezier(.2,.85,.25,1) both}
 .contact:not(.pending) .contact-link:nth-child(2){animation-delay:.08s}.contact:not(.pending) .contact-link:nth-child(3){animation-delay:.16s}.contact:not(.pending) .contact-link:nth-child(4){animation-delay:.24s}.contact:not(.pending) .contact-link:nth-child(5){animation-delay:.32s}
@@ -85,7 +85,7 @@ body{
 .contact-link:hover,.contact-link:focus-visible{transform:translateY(-2px);background:rgba(255,196,87,.1);border-color:color-mix(in srgb,var(--gold) 65%,transparent);box-shadow:0 5px 18px rgba(255,196,87,.1);outline:none}
 .contact-link:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
 .contact-link svg{width:1.1em;height:1.1em;flex:none}
-.instagram svg{color:#e1306c}.facebook svg{color:#1877f2}.email svg{color:#ea4335}.call svg{color:#34a853}.x svg{color:#e7e7e7}
+.instagram svg{color:#e1306c}.facebook svg{color:#1877f2}.email svg{color:#ea4335}.call svg{color:#34a853}.x svg{color:#e7e7e7}.linkedin svg{color:#0a8fe0}
 @keyframes channel-in{0%{opacity:0;transform:translateY(12px) scale(.96);clip-path:inset(0 0 100% 0)}70%{opacity:1;clip-path:inset(0)}100%{transform:translateY(0) scale(1);clip-path:inset(0)}}
 @keyframes signal{50%{opacity:.42;box-shadow:0 0 3px #74e3a1}}
 
@@ -174,6 +174,10 @@ footer{color:#342820}
     <a class="contact-link x" href="https://x.com/Housinghues" target="_blank" rel="noopener" aria-label="X: Housinghues">
       <svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M17.8 3h3L14.2 10.6 22 21h-6.1l-4.8-6.3L5.6 21h-3l7-8.1L2.2 3h6.2l4.3 5.7L17.8 3Zm-1.1 16.2h1.7L7.4 4.7H5.6l11.1 14.5Z"></path></svg>
       <span>@Housinghues</span>
+    </a>
+    <a class="contact-link linkedin" href="https://www.linkedin.com/in/housing-hues-undefined-91669a42a" target="_blank" rel="noopener" aria-label="LinkedIn: Housing Hues">
+      <svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5ZM3 9.75h4V21H3V9.75Zm6.5 0h3.83v1.54h.05c.53-.96 1.84-1.97 3.78-1.97 4.04 0 4.79 2.57 4.79 5.9V21h-4v-5.1c0-1.22-.02-2.78-1.8-2.78-1.8 0-2.07 1.3-2.07 2.69V21h-4V9.75Z"></path></svg>
+      <span>Housing Hues</span>
     </a>
     </div>
   </div>
