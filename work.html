@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Work · Housing Hues</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=JetBrains+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="site.css">
+<style>
+.filters{display:flex;flex-wrap:wrap;gap:8px;width:100%;max-width:760px}
+.filters button{font:inherit;font-size:.75rem;letter-spacing:.12em;text-transform:uppercase;color:var(--fg);background:var(--panel);border:1px solid var(--line);border-radius:999px;padding:10px 16px;min-height:44px;cursor:pointer}
+.filters button[aria-pressed="true"]{border-color:var(--gold);color:var(--gold)}
+.msg{color:var(--dim);margin:0}
+.card .shot{width:100%;height:auto;border-radius:4px;margin-bottom:10px;display:block}
+.card a.go{display:inline-block;margin-top:8px;color:var(--gold)}
+</style>
+<script defer src="/_vercel/insights/script.js"></script></head><body>
+<div class="top"><a href="index.html">← Housing Hues</a><h1>Work</h1><p class="sub">// Projects by category</p></div>
+<div class="filters" id="filters" role="group" aria-label="Filter by category"></div>
+<main id="list" aria-live="polite"><p class="msg">Loading…</p></main>
+<script>
+(function(){
+var URL_='https://hxcskyrsgvojixtjtjlx.supabase.co/rest/v1/work?select=title,category,label,description,image_url,link_url&published=eq.true&order=sort_order.asc';
+var KEY='sb_publishable_uy9UK3ULBgv5Ebhx29_YLw_nQh7PuH3';
+var list=document.getElementById('list'),fil=document.getElementById('filters'),items=[],cur='All';
+function safe(u){return typeof u==='string'&&(/^https?:\/\//i.test(u)||/^img\/[\w.\-]+$/.test(u))?u:null}
+function el(t,c,x){var e=document.createElement(t);if(c)e.className=c;if(x)e.textContent=x;return e}
+function render(){
+  list.textContent='';
+  var shown=items.filter(function(i){return cur==='All'||i.category===cur});
+  if(!shown.length){list.appendChild(el('p','msg','Nothing here yet.'));return}
+  shown.forEach(function(i){
+    var a=el('article','card'),img=safe(i.image_url);
+    if(img){var im=el('img','shot');im.src=img;im.alt=i.title;im.loading='lazy';a.appendChild(im)}
+    a.appendChild(el('h2',0,i.title));
+    var meta=[i.category,i.label].filter(Boolean).join(' · ');
+    a.appendChild(el('span','role',meta));
+    if(i.description)a.appendChild(el('p',0,i.description));
+    var l=safe(i.link_url);
+    if(l&&/^https?:/i.test(l)){var g=el('a','go','View ↗');g.href=l;g.target='_blank';g.rel='noopener';a.appendChild(g)}
+    list.appendChild(a)});
+}
+function buttons(){
+  ['All','Branding','Digital','Photography'].forEach(function(c){
+    var b=el('button',0,c);b.type='button';b.setAttribute('aria-pressed',c==='All');
+    b.onclick=function(){cur=c;[].forEach.call(fil.children,function(x){x.setAttribute('aria-pressed',x===b)});render()};
+    fil.appendChild(b)});
+}
+buttons();
+fetch(URL_,{headers:{apikey:KEY,Authorization:'Bearer '+KEY}}).then(function(r){if(!r.ok)throw 0;return r.json()})
+.then(function(d){items=d;render()})
+.catch(function(){list.textContent='';list.appendChild(el('p','msg','Couldn’t load the work right now. Please try again shortly.'))});
+})();
+</script>
+</body></html>
