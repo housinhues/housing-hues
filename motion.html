@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Motion · Housing Hues</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=JetBrains+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="site.css">
+<style>
+.paths{display:flex;gap:8px;width:100%;max-width:760px}
+.paths button{flex:1;font:inherit;font-size:.8rem;letter-spacing:.12em;text-transform:uppercase;color:var(--fg);background:var(--panel);border:1px solid var(--line);border-radius:4px;padding:12px;min-height:48px;cursor:pointer}
+.paths button[aria-pressed="true"]{border-color:var(--gold);color:var(--gold)}
+form{display:grid;gap:12px;margin-top:12px}
+label{display:grid;gap:6px;font-size:.75rem;letter-spacing:.1em;text-transform:uppercase;color:var(--dim)}
+input,textarea{font:inherit;font-size:16px;letter-spacing:0;text-transform:none;color:var(--fg);background:rgba(255,255,255,.04);border:1px solid var(--line);border-radius:4px;padding:12px;width:100%;min-height:46px}
+textarea{min-height:96px;resize:vertical}
+input:focus,textarea:focus{outline:2px solid var(--gold);outline-offset:1px}
+.send{font:inherit;font-size:.85rem;letter-spacing:.14em;text-transform:uppercase;color:#000;background:var(--gold);border:0;border-radius:4px;padding:14px;min-height:48px;cursor:pointer}
+.send:disabled{opacity:.5;cursor:default}
+.hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+.ok,.err{margin:12px 0 0}.card p.ok{color:#b6ff3d}.card p.err{color:#ff8a7a}
+</style>
+<script defer src="/_vercel/insights/script.js"></script></head><body>
+<div class="top"><a href="index.html">← Housing Hues</a><h1>Motion</h1><p class="sub">// Get in on what we're building</p></div>
+<div class="paths" id="paths" role="group" aria-label="Pick a path">
+  <button type="button" data-p="creator" aria-pressed="true">Creator</button>
+  <button type="button" data-p="backer" aria-pressed="false">Backer</button>
+</div>
+<main><article class="card">
+  <h2 id="ttl">Creators</h2>
+  <p id="sub" style="color:var(--fg)">Show us what you make.</p>
+  <form id="f" novalidate>
+    <label>Name<input name="name" maxlength="80" autocomplete="name" required></label>
+    <label>Phone, WhatsApp or email<input name="contact" maxlength="120" autocomplete="off" required></label>
+    <label><span id="fl">Your craft</span><input name="focus" maxlength="120"></label>
+    <label><span id="ll">Link to your work (optional)</span><input name="link" type="url" inputmode="url" maxlength="300" placeholder="https://"></label>
+    <label>Message (optional)<textarea name="message" maxlength="600"></textarea></label>
+    <div class="hp" aria-hidden="true"><label>Website<input name="website" tabindex="-1" autocomplete="off"></label></div>
+    <button class="send" id="send" type="submit">Send</button>
+    <p class="ok" id="ok" hidden>Received. We'll be in touch.</p>
+    <p class="err" id="er" hidden>Couldn’t send that. Check your details and try again.</p>
+  </form>
+</article></main>
+<script>
+(function(){
+var API='https://hxcskyrsgvojixtjtjlx.supabase.co/rest/v1/contributions',K='sb_publishable_uy9UK3ULBgv5Ebhx29_YLw_nQh7PuH3';
+var path='creator',f=document.getElementById('f'),btn=document.getElementById('send'),ok=document.getElementById('ok'),er=document.getElementById('er');
+var T={creator:['Creators','Show us what you make.','Your craft','Link to your work (optional)'],backer:['Backers','Tell us what you want to be part of.','What interests you','Link, e.g. your company or profile (optional)']};
+document.getElementById('paths').addEventListener('click',function(e){
+  var b=e.target.closest('button');if(!b)return;path=b.dataset.p;
+  [].forEach.call(this.children,function(x){x.setAttribute('aria-pressed',x===b)});
+  var t=T[path];document.getElementById('ttl').textContent=t[0];document.getElementById('sub').textContent=t[1];document.getElementById('fl').textContent=t[2];document.getElementById('ll').textContent=t[3];ok.hidden=er.hidden=true;
+});
+f.addEventListener('submit',function(e){
+  e.preventDefault();ok.hidden=er.hidden=true;
+  var d=new FormData(f);if(d.get('website'))return;
+  var name=(d.get('name')||'').trim(),contact=(d.get('contact')||'').trim(),link=(d.get('link')||'').trim();
+  if(!name||contact.length<3||(link&&!/^https?:\/\//i.test(link))){er.hidden=false;return}
+  btn.disabled=true;
+  fetch(API,{method:'POST',headers:{apikey:K,Authorization:'Bearer '+K,'Content-Type':'application/json',Prefer:'return=minimal'},
+    body:JSON.stringify({path:path,name:name,contact:contact,focus:(d.get('focus')||'').trim()||null,link:link||null,message:(d.get('message')||'').trim()||null})})
+  .then(function(r){if(!r.ok)throw 0;f.reset();ok.hidden=false})
+  .catch(function(){er.hidden=false}).then(function(){btn.disabled=false});
+});
+})();
+</script>
+</body></html>
