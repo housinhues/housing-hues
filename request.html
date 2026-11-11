@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Request · Housing Hues</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=JetBrains+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="site.css">
+<style>
+form{display:grid;gap:12px;margin-top:12px}form[hidden]{display:none}.wa{margin-top:12px}
+label{display:grid;gap:6px;font-size:.75rem;letter-spacing:.1em;text-transform:uppercase;color:var(--dim)}
+input,textarea,select{font:inherit;font-size:16px;letter-spacing:0;text-transform:none;color:var(--fg);background:rgba(255,255,255,.04);border:1px solid var(--line);border-radius:4px;padding:12px;width:100%;min-height:46px}
+select option{color:#000}
+textarea{min-height:110px;resize:vertical}
+input:focus,textarea:focus,select:focus{outline:2px solid var(--gold);outline-offset:1px}
+.send,.wa{display:block;text-align:center;text-decoration:none;font:inherit;font-size:.85rem;letter-spacing:.14em;text-transform:uppercase;color:#000;background:var(--gold);border:0;border-radius:4px;padding:14px;min-height:48px;cursor:pointer}
+.send:disabled{opacity:.5;cursor:default}
+.hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+.card p.ok{color:#b6ff3d}.card p.err{color:#ff8a7a}
+</style>
+<script defer src="/_vercel/insights/script.js"></script></head><body>
+<div class="top"><a href="index.html">← Housing Hues</a><h1>Request</h1><p class="sub">// Tell us what you need</p></div>
+<main><article class="card">
+  <form id="f" novalidate>
+    <label>Name<input name="name" maxlength="80" autocomplete="name" required></label>
+    <label>Phone, WhatsApp or email<input name="contact" maxlength="120" autocomplete="off" required></label>
+    <label>What do you need
+      <select name="service"><option>Digital</option><option>Social media</option><option>Photography</option><option>Events</option><option>Branding</option><option>Talent</option><option>Other</option></select></label>
+    <label>When<input name="timeline" maxlength="80" placeholder="e.g. before 19 Dec"></label>
+    <label>Budget (optional)<input name="budget" maxlength="60" placeholder="e.g. R5 000"></label>
+    <label>Details<textarea name="message" maxlength="800"></textarea></label>
+    <div class="hp" aria-hidden="true"><label>Website<input name="website" tabindex="-1" autocomplete="off"></label></div>
+    <button class="send" id="send" type="submit">Send request</button>
+    <p class="err" id="er" hidden>Couldn’t send that. Check your name and contact and try again.</p>
+  </form>
+  <div id="done" hidden>
+    <p class="ok" style="color:#b6ff3d">Received. We'll be in touch.</p>
+    <p>Want a faster reply? Send it on WhatsApp too.</p>
+    <a class="wa" id="wa" target="_blank" rel="noopener">Open WhatsApp ↗</a>
+  </div>
+</article></main>
+<script>
+(function(){
+var API='https://hxcskyrsgvojixtjtjlx.supabase.co/rest/v1/enquiries',K='sb_publishable_uy9UK3ULBgv5Ebhx29_YLw_nQh7PuH3',NUM='27604561732';
+var f=document.getElementById('f'),btn=document.getElementById('send'),er=document.getElementById('er'),done=document.getElementById('done');
+f.addEventListener('submit',function(e){
+  e.preventDefault();er.hidden=true;
+  var d=new FormData(f);if(d.get('website'))return;
+  var v=function(k){return (d.get(k)||'').trim()},name=v('name'),contact=v('contact');
+  if(!name||contact.length<3){er.hidden=false;return}
+  var row={name:name,contact:contact,service:v('service'),timeline:v('timeline')||null,budget:v('budget')||null,message:v('message')||null};
+  btn.disabled=true;
+  fetch(API,{method:'POST',headers:{apikey:K,Authorization:'Bearer '+K,'Content-Type':'application/json',Prefer:'return=minimal'},body:JSON.stringify(row)})
+  .then(function(r){if(!r.ok)throw 0;
+    var t='Hi Housing Hues, I just sent a request.\nName: '+name+'\nNeed: '+row.service+(row.timeline?'\nWhen: '+row.timeline:'')+(row.budget?'\nBudget: '+row.budget:'')+(row.message?'\n'+row.message:'');
+    document.getElementById('wa').href='https://wa.me/'+NUM+'?text='+encodeURIComponent(t);
+    f.hidden=true;done.hidden=false})
+  .catch(function(){er.hidden=false;btn.disabled=false});
+});
+})();
+</script>
+</body></html>
