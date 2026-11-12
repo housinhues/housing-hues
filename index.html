@@ -136,10 +136,10 @@ footer{color:#342820}
 .id.live{position:relative}.id.live::after{content:"";position:absolute;top:-2px;right:-2px;width:7px;height:7px;border-radius:50%;background:#74e3a1;box-shadow:0 0 8px #74e3a1;animation:signal 1.6s ease-in-out infinite}
 @media (prefers-reduced-motion:reduce){.id.live::after{animation:none}}
 .ln summary button.id{appearance:none;-webkit-appearance:none;font-family:inherit;line-height:1;cursor:pointer;position:relative}
-.ln summary button.id::before{content:"";position:absolute;inset:-8px -10px}
-.ln summary button.id{display:flex;width:2.5em;height:2.5em;min-width:0;padding:3px;border-radius:50%;border:2px solid var(--gold);background:#000;box-shadow:0 0 8px rgba(224,177,0,.3);font-weight:600}
+.ln summary button.id::before{content:"";position:absolute;inset:-13px}
+.ln summary button.id{display:flex;width:calc(2.5em - 10px);height:calc(2.5em - 10px);min-width:0;padding:0;border-radius:50%;border:0;background:transparent;box-shadow:none;font-weight:600}
 .ln summary button.id .coin{display:grid;place-items:center;flex:1 1 auto;align-self:stretch;border-radius:50%;background:radial-gradient(circle at 35% 30%,#3a3000,#000 70%);box-shadow:inset 0 0 0 1px rgba(224,177,0,.85);will-change:transform;animation:hh-idle 5s ease-in-out infinite;animation-delay:calc(var(--i,0) * -.7s)}
-.ln details[open] summary button.id{background:#000;color:var(--gold)}
+.ln details[open] summary button.id{background:transparent;color:var(--gold)}
 .ln summary button.id[aria-expanded="true"] .coin{background:var(--gold);color:#000;animation:hh-sway 5s ease-in-out infinite;animation-delay:0s}
 .ln summary button.id.flip .coin{animation:hh-flip 1.5s cubic-bezier(.16,.8,.24,1) 1 both;animation-delay:0s}
 @keyframes hh-idle{0%,100%{transform:perspective(220px) rotateX(0)}50%{transform:perspective(220px) rotateX(35deg)}}
@@ -153,6 +153,7 @@ footer{color:#342820}
 .contact{padding:0;border:0;background:none;box-shadow:none;overflow:visible}
 .contact::after{display:none}
 .contact-links{margin-top:0}
+.contact-link{border:1.5px solid #8b5a2b}
 @media (prefers-reduced-motion:reduce){.ln summary button.id .coin,.ln summary button.id[aria-expanded="true"] .coin,.ln summary button.id.flip .coin{animation:none}.info{animation:none}}
 </style>
 </head>
