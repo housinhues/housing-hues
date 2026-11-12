@@ -39,6 +39,7 @@ input:focus,textarea:focus,select:focus{outline:2px solid var(--gold);outline-of
 <script>
 (function(){
 var API='https://hxcskyrsgvojixtjtjlx.supabase.co/rest/v1/enquiries',K='sb_publishable_uy9UK3ULBgv5Ebhx29_YLw_nQh7PuH3',NUM='27604561732';
+try{var q=new URLSearchParams(location.search).get('service'),sel=document.querySelector('select[name=service]');if(q)[].forEach.call(sel.options,function(o){if(o.value===q)sel.value=q})}catch(e){}
 var f=document.getElementById('f'),btn=document.getElementById('send'),er=document.getElementById('er'),done=document.getElementById('done');
 f.addEventListener('submit',function(e){
   e.preventDefault();er.hidden=true;
