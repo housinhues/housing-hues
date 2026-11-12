@@ -20,6 +20,7 @@ input:focus,textarea:focus{outline:2px solid var(--gold);outline-offset:1px}
 .send:disabled{opacity:.5;cursor:default}
 .hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
 .ok,.err{margin:12px 0 0}.card p.ok{color:#b6ff3d}.card p.err{color:#ff8a7a}
+.sg{margin-top:14px;padding-top:12px;border-top:1px solid var(--line)}.sg label{display:block;font-size:.75rem;letter-spacing:.14em;text-transform:uppercase;color:var(--gold)}.sg .r{display:flex;gap:8px;margin-top:8px}.sg input{flex:1;min-width:0;font:inherit;color:inherit;background:transparent;border:1px solid var(--line);border-radius:4px;padding:9px 10px}.sg button{font:inherit;color:#000;background:var(--gold);border:0;border-radius:4px;padding:9px 14px;cursor:pointer}.sg small{display:block;margin-top:6px;color:var(--dim)}.sg .hp{position:absolute;left:-9999px}
 </style>
 <script defer src="/_vercel/insights/script.js"></script></head><body>
 <div class="top"><a href="index.html">← Housing Hues</a><h1>Work</h1><p class="sub">// What we're busy with</p></div>
@@ -51,6 +52,19 @@ var KEY='sb_publishable_uy9UK3ULBgv5Ebhx29_YLw_nQh7PuH3';
 var list=document.getElementById('list');
 function safe(u){return typeof u==='string'&&(/^https?:\/\//i.test(u)||/^img\/[\w.\-]+$/.test(u))?u:null}
 function el(t,c,x){var e=document.createElement(t);if(c)e.className=c;if(x)e.textContent=x;return e}
+function suggest(a){
+  var w=el('div','sg'),done=false;try{done=localStorage.getItem('hh_artist')==='1'}catch(e){}
+  w.appendChild(el('label',0,'Who should we book next?'));
+  if(done){w.appendChild(el('small',0,'Got your suggestion. Thanks.'));a.appendChild(w);return}
+  var f=el('form','r'),i=el('input');i.maxLength=80;i.placeholder='Artist name';i.setAttribute('aria-label','Artist name');i.required=true;
+  var h=el('input','hp');h.tabIndex=-1;h.autocomplete='off';h.setAttribute('aria-hidden','true');
+  var b=el('button',0,'Send');b.type='submit';f.appendChild(i);f.appendChild(h);f.appendChild(b);w.appendChild(f);
+  var n=el('small',0,'We read every one. No promises.');w.appendChild(n);
+  f.addEventListener('submit',function(e){e.preventDefault();var v=i.value.trim();if(v.length<2||h.value)return;b.disabled=true;
+    fetch('https://hxcskyrsgvojixtjtjlx.supabase.co/rest/v1/artist_requests',{method:'POST',headers:{apikey:KEY,Authorization:'Bearer '+KEY,'Content-Type':'application/json',Prefer:'return=minimal'},body:JSON.stringify({artist:v})})
+    .then(function(r){if(!r.ok)throw 0;try{localStorage.setItem('hh_artist','1')}catch(e){}f.remove();n.textContent='Got it. Thanks.'})
+    .catch(function(){b.disabled=false;n.textContent='Didn’t go through. Try again.'})});
+  a.appendChild(w)}
 function render(items){
   list.textContent='';
   if(!items.length){list.appendChild(el('p','msg','Nothing here yet.'));return}
@@ -62,6 +76,7 @@ function render(items){
     if(i.description)a.appendChild(el('p',0,i.description));
     var ls=Array.isArray(i.links)?i.links:[];
     if(ls.length){var w=el('div','links');ls.forEach(function(l){var u=safe(l.url);if(u&&/^https?:/i.test(u)){var g=el('a',0,(l.label||'Link')+' ↗');g.href=u;g.target='_blank';g.rel='noopener';w.appendChild(g)}});a.appendChild(w)}
+    if(/^Klerksdorp Summer Blow/.test(i.title))suggest(a);
     list.appendChild(a)});
 }
 fetch(URL_,{headers:{apikey:KEY,Authorization:'Bearer '+KEY}}).then(function(r){if(!r.ok)throw 0;return r.json()})
