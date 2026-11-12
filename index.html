@@ -137,9 +137,10 @@ footer{color:#342820}
 @media (prefers-reduced-motion:reduce){.id.live::after{animation:none}}
 .ln summary button.id{appearance:none;-webkit-appearance:none;font-family:inherit;line-height:1;cursor:pointer;position:relative;will-change:transform;animation:hh-idle 5s ease-in-out infinite;animation-delay:calc(var(--i,0) * -.7s)}
 .ln summary button.id::before{content:"";position:absolute;inset:-8px -10px}
+.ln summary button.id{width:2.5em;height:2.5em;min-width:0;padding:0;border-radius:50%;border:2px solid var(--gold);background:radial-gradient(circle at 35% 30%,#3a3000,#000 70%);box-shadow:inset 0 0 0 3px #000,inset 0 0 0 4px rgba(224,177,0,.85),0 0 8px rgba(224,177,0,.3);font-weight:600}
 .ln summary button.id[aria-expanded="true"]{background:var(--gold);color:#000;animation:hh-sway 5s ease-in-out infinite;animation-delay:0s}
 .ln summary button.id.flip{animation:hh-flip 1.5s cubic-bezier(.16,.8,.24,1) 1 both;animation-delay:0s}
-@keyframes hh-idle{0%,100%{transform:perspective(220px) rotateX(0)}50%{transform:perspective(220px) rotateX(55deg)}}
+@keyframes hh-idle{0%,100%{transform:perspective(220px) rotateX(0)}50%{transform:perspective(220px) rotateX(35deg)}}
 @keyframes hh-flip{from{transform:perspective(220px) rotateY(0)}to{transform:perspective(220px) rotateY(720deg)}}
 @keyframes hh-sway{0%,100%{transform:perspective(220px) rotateY(0)}25%{transform:perspective(220px) rotateY(18deg)}75%{transform:perspective(220px) rotateY(-18deg)}}
 .info{margin:4px 14px 10px;padding:10px 12px;border:1px solid var(--gold);background:rgba(0,0,0,.55);color:#fff;text-align:center;font-size:.92em;text-shadow:0 0 2px #000,0 0 3px #000,0 1px 4px #000;animation:details-in .18s ease-out both}
