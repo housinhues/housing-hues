@@ -5,12 +5,13 @@
 <meta property="og:title" content="Klerksdorp Summer Blow · 19 Dec 2026"><meta property="og:image" content="img/summer-blow-poster.webp">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=JetBrains+Mono:wght@400;500&display=swap">
 <link rel="stylesheet" href="site.css">
-<style>.poster{width:100%;height:auto;border-radius:4px;display:block;margin-bottom:12px}.fact{margin:10px 0 0;color:var(--fg)}.fact b{color:var(--gold);font-weight:500;letter-spacing:.1em;font-size:.75rem;text-transform:uppercase;display:block}.sg{margin-top:0}.sg label{display:block;font-size:.75rem;letter-spacing:.14em;text-transform:uppercase;color:var(--gold)}.sg .r{display:flex;gap:8px;margin-top:8px}.sg input{flex:1;min-width:0;font:inherit;color:inherit;background:transparent;border:1px solid var(--line);border-radius:4px;padding:9px 10px}.sg button{font:inherit;color:#000;background:var(--gold);border:0;border-radius:4px;padding:9px 14px;cursor:pointer}.sg small{display:block;margin-top:6px;color:var(--dim)}.sg .hp{position:absolute;left:-9999px}</style>
+<style>.poster{width:100%;height:auto;border-radius:4px;display:block;margin-bottom:12px}.fact{margin:10px 0 0;color:var(--fg)}.fact b{color:var(--gold);font-weight:500;letter-spacing:.1em;font-size:.75rem;text-transform:uppercase;display:block}.sg{margin-top:0}.sg label{display:block;font-size:.75rem;letter-spacing:.14em;text-transform:uppercase;color:var(--gold)}.sg .r{display:flex;gap:8px;margin-top:8px}.sg input{flex:1;min-width:0;font:inherit;color:inherit;background:transparent;border:1px solid var(--line);border-radius:4px;padding:9px 10px}.sg button{font:inherit;color:#000;background:var(--gold);border:0;border-radius:4px;padding:9px 14px;cursor:pointer}.sg small{display:block;margin-top:6px;color:var(--dim)}.sg .hp{position:absolute;left:-9999px}.cd{text-align:center;padding:14px 16px}.cd b{display:block;font-family:Anton,sans-serif;font-weight:400;font-size:3.4rem;line-height:1;color:var(--gold);letter-spacing:.02em}.cd span{display:block;margin-top:6px;font-size:.75rem;letter-spacing:.2em;text-transform:uppercase;color:var(--dim)}</style>
 <script defer src="/_vercel/insights/script.js"></script>
 </head>
 <body>
 <div class="top"><a href="index.html">← Housing Hues</a><h1>Summer Blow</h1><p class="sub">19 December 2026</p></div>
 <main>
+<article class="card cd" id="cd" hidden aria-live="polite"><b id="cdn"></b><span id="cdl"></span></article>
 <article class="card"><img class="poster" src="img/summer-blow-poster.webp" alt="Klerksdorp Summer Blow poster, 19 December, Creativeskonnect presents" width="720" height="510"><h2>Klerksdorp Summer Blow</h2><span class="role">Creativeskonnect presents</span>
 <p class="fact"><b>When</b>Saturday 19 December 2026</p>
 <p class="fact"><b>Where</b>New Axis, Thys Joint, Klerksdorp</p>
@@ -23,6 +24,15 @@
 <article class="card" id="suggest"></article>
 </main>
 <script>
+(function(){var c=document.getElementById('cd'),n=document.getElementById('cdn'),l=document.getElementById('cdl');
+var t=new Date('2026-12-19T00:00:00+02:00').getTime();
+function u(){var d=Math.ceil((t-Date.now())/864e5);
+ if(d>1){n.textContent=d;l.textContent='days to go'}
+ else if(d===1){n.textContent='1';l.textContent='day to go'}
+ else if(Date.now()<t+864e5){n.textContent='Today';l.textContent='Klerksdorp Summer Blow'}
+ else{c.hidden=true;return}
+ c.hidden=false}
+u();setInterval(u,6e4)})();
 (function(){
 var KEY='sb_publishable_uy9UK3ULBgv5Ebhx29_YLw_nQh7PuH3';
 function el(t,c,x){var e=document.createElement(t);if(c)e.className=c;if(x)e.textContent=x;return e}
