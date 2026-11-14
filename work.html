@@ -76,7 +76,7 @@ function render(items){
     if(i.description)a.appendChild(el('p',0,i.description));
     var ls=Array.isArray(i.links)?i.links:[];
     if(ls.length){var w=el('div','links');ls.forEach(function(l){var u=safe(l.url);if(u&&/^https?:/i.test(u)){var g=el('a',0,(l.label||'Link')+' ↗');g.href=u;g.target='_blank';g.rel='noopener';w.appendChild(g)}});a.appendChild(w)}
-    if(/^Klerksdorp Summer Blow/.test(i.title))suggest(a);
+    if(/^Klerksdorp Summer Blow/.test(i.title)){var m=el('div','links'),g=el('a',0,'Full details and poster →');g.href='summerblow.html';m.appendChild(g);a.appendChild(m)}
     list.appendChild(a)});
 }
 fetch(URL_,{headers:{apikey:KEY,Authorization:'Bearer '+KEY}}).then(function(r){if(!r.ok)throw 0;return r.json()})

@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Klerksdorp Summer Blow · Housing Hues</title>
+<meta name="description" content="Klerksdorp Summer Blow. 19 December 2026 at New Axis, Thys Joint.">
+<meta property="og:title" content="Klerksdorp Summer Blow · 19 Dec 2026"><meta property="og:image" content="img/summer-blow-poster.webp">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=JetBrains+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="site.css">
+<style>.poster{width:100%;height:auto;border-radius:4px;display:block;margin-bottom:12px}.fact{margin:10px 0 0;color:var(--fg)}.fact b{color:var(--gold);font-weight:500;letter-spacing:.1em;font-size:.75rem;text-transform:uppercase;display:block}.sg{margin-top:0}.sg label{display:block;font-size:.75rem;letter-spacing:.14em;text-transform:uppercase;color:var(--gold)}.sg .r{display:flex;gap:8px;margin-top:8px}.sg input{flex:1;min-width:0;font:inherit;color:inherit;background:transparent;border:1px solid var(--line);border-radius:4px;padding:9px 10px}.sg button{font:inherit;color:#000;background:var(--gold);border:0;border-radius:4px;padding:9px 14px;cursor:pointer}.sg small{display:block;margin-top:6px;color:var(--dim)}.sg .hp{position:absolute;left:-9999px}</style>
+<script defer src="/_vercel/insights/script.js"></script>
+</head>
+<body>
+<div class="top"><a href="index.html">← Housing Hues</a><h1>Summer Blow</h1><p class="sub">19 December 2026</p></div>
+<main>
+<article class="card"><img class="poster" src="img/summer-blow-poster.webp" alt="Klerksdorp Summer Blow poster, 19 December, Creativeskonnect presents" width="720" height="510"><h2>Klerksdorp Summer Blow</h2><span class="role">Creativeskonnect presents</span>
+<p class="fact"><b>When</b>Saturday 19 December 2026</p>
+<p class="fact"><b>Where</b>New Axis, Thys Joint, Klerksdorp</p>
+<p class="fact"><b>1st headliner</b>Bafana ba Mopresso</p>
+<p class="fact"><b>MC</b>Boyofcheese</p>
+<p>Many more in store. More info coming.</p>
+<div class="links"><a href="https://www.instagram.com/creativeskonnect/" target="_blank" rel="noopener">Announcement ↗</a></div></article>
+<article class="card"><h2>In collaboration with</h2><div class="links"><a href="https://www.instagram.com/creativeskonnect/" target="_blank" rel="noopener">Creativeskonnect ↗</a><a href="https://www.instagram.com/fwesh_visualz/" target="_blank" rel="noopener">Fwesh Visuals ↗</a><a href="https://www.instagram.com/thysjoint/" target="_blank" rel="noopener">Thys Joint ↗</a></div><p>Online ticketing in the works.</p></article>
+<article class="card" id="suggest"></article>
+</main>
+<script>
+(function(){
+var KEY='sb_publishable_uy9UK3ULBgv5Ebhx29_YLw_nQh7PuH3';
+function el(t,c,x){var e=document.createElement(t);if(c)e.className=c;if(x)e.textContent=x;return e}
+var a=document.getElementById('suggest'),w=el('div','sg'),done=false;try{done=localStorage.getItem('hh_artist')==='1'}catch(e){}
+w.appendChild(el('label',0,'Who should we book next?'));
+if(done){w.appendChild(el('small',0,'Got your suggestion. Thanks.'));a.appendChild(w);return}
+var f=el('form','r'),i=el('input');i.maxLength=80;i.placeholder='Artist name';i.setAttribute('aria-label','Artist name');i.required=true;
+var h=el('input','hp');h.tabIndex=-1;h.autocomplete='off';h.setAttribute('aria-hidden','true');
+var b=el('button',0,'Send');b.type='submit';f.appendChild(i);f.appendChild(h);f.appendChild(b);w.appendChild(f);
+var n=el('small',0,'We read every one. No promises.');w.appendChild(n);
+f.addEventListener('submit',function(e){e.preventDefault();var v=i.value.trim();if(v.length<2||h.value)return;b.disabled=true;
+  fetch('https://hxcskyrsgvojixtjtjlx.supabase.co/rest/v1/artist_requests',{method:'POST',headers:{apikey:KEY,Authorization:'Bearer '+KEY,'Content-Type':'application/json',Prefer:'return=minimal'},body:JSON.stringify({artist:v})})
+  .then(function(r){if(!r.ok)throw 0;try{localStorage.setItem('hh_artist','1')}catch(e){}f.remove();n.textContent='Got it. Thanks.'})
+  .catch(function(){b.disabled=false;n.textContent='Didn’t go through. Try again.'})});
+a.appendChild(w);
+})();
+</script>
+</body></html>
