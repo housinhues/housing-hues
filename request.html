@@ -14,6 +14,7 @@ input:focus,textarea:focus,select:focus{outline:2px solid var(--gold);outline-of
 .send:disabled{opacity:.5;cursor:default}
 .hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
 .card p.ok{color:#b6ff3d}.card p.err{color:#ff8a7a}
+.cs{display:flex;align-items:flex-start;gap:10px;text-transform:none;letter-spacing:0;font-size:.8rem;color:var(--dim)}.cs input{margin-top:3px;flex:none;width:auto}.cs a{color:var(--gold)}
 </style>
 <script defer src="/_vercel/insights/script.js"></script></head><body>
 <div class="top"><a href="index.html">← Housing Hues</a><h1>Request</h1><p class="sub">// Tell us what you need</p></div>
@@ -26,6 +27,7 @@ input:focus,textarea:focus,select:focus{outline:2px solid var(--gold);outline-of
     <label>When<input name="timeline" maxlength="80" placeholder="e.g. before 19 Dec"></label>
     <label>Budget (optional)<input name="budget" maxlength="60" placeholder="e.g. R5 000"></label>
     <label>Details<textarea name="message" maxlength="800"></textarea></label>
+    <label class="cs"><input type="checkbox" name="consent" value="1"><span>I agree Housing Hues can use these details to reply to me. <a href="privacy.html" target="_blank">Privacy</a></span></label>
     <div class="hp" aria-hidden="true"><label>Website<input name="website" tabindex="-1" autocomplete="off"></label></div>
     <button class="send" id="send" type="submit">Send request</button>
     <p class="err" id="er" hidden>Couldn’t send that. Check your name and contact and try again.</p>
@@ -44,6 +46,8 @@ var f=document.getElementById('f'),btn=document.getElementById('send'),er=docume
 f.addEventListener('submit',function(e){
   e.preventDefault();er.hidden=true;
   var d=new FormData(f);if(d.get('website'))return;
+  if(!d.get('consent')){er.textContent='Tick the box to continue.';er.hidden=false;return}
+  er.textContent='Couldn’t send that. Check your name and contact and try again.';
   var v=function(k){return (d.get(k)||'').trim()},name=v('name'),contact=v('contact');
   if(!name||contact.length<3){er.hidden=false;return}
   var row={name:name,contact:contact,service:v('service'),timeline:v('timeline')||null,budget:v('budget')||null,message:v('message')||null};

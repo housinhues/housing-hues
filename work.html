@@ -21,6 +21,7 @@ input:focus,textarea:focus{outline:2px solid var(--gold);outline-offset:1px}
 .hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
 .ok,.err{margin:12px 0 0}.card p.ok{color:#b6ff3d}.card p.err{color:#ff8a7a}
 .sg{margin-top:14px;padding-top:12px;border-top:1px solid var(--line)}.sg label{display:block;font-size:.75rem;letter-spacing:.14em;text-transform:uppercase;color:var(--gold)}.sg .r{display:flex;gap:8px;margin-top:8px}.sg input{flex:1;min-width:0;font:inherit;color:inherit;background:transparent;border:1px solid var(--line);border-radius:4px;padding:9px 10px}.sg button{font:inherit;color:#000;background:var(--gold);border:0;border-radius:4px;padding:9px 14px;cursor:pointer}.sg small{display:block;margin-top:6px;color:var(--dim)}.sg .hp{position:absolute;left:-9999px}
+.cs{display:flex;align-items:flex-start;gap:10px;text-transform:none;letter-spacing:0;font-size:.8rem;color:var(--dim)}.cs input{margin-top:3px;flex:none;width:auto}.cs a{color:var(--gold)}
 </style>
 <script defer src="/_vercel/insights/script.js"></script></head><body>
 <div class="top"><a href="index.html">← Housing Hues</a><h1>Work</h1><p class="sub">// What we're busy with</p></div>
@@ -39,6 +40,7 @@ input:focus,textarea:focus{outline:2px solid var(--gold);outline-offset:1px}
     <label><span id="fl">Your craft</span><input name="focus" maxlength="120"></label>
     <label><span id="ll">Link to your work (optional)</span><input name="link" type="url" inputmode="url" maxlength="300" placeholder="https://"></label>
     <label>Message (optional)<textarea name="message" maxlength="600"></textarea></label>
+    <label class="cs"><input type="checkbox" name="consent" value="1"><span>I agree Housing Hues can use these details to reply to me. <a href="privacy.html" target="_blank">Privacy</a></span></label>
     <div class="hp" aria-hidden="true"><label>Website<input name="website" tabindex="-1" autocomplete="off"></label></div>
     <button class="send" id="send" type="submit">Send</button>
     <p class="ok" id="ok" hidden>Received. We'll be in touch.</p>
@@ -97,6 +99,8 @@ document.getElementById('paths').addEventListener('click',function(e){
 f.addEventListener('submit',function(e){
   e.preventDefault();ok.hidden=er.hidden=true;
   var d=new FormData(f);if(d.get('website'))return;
+  if(!d.get('consent')){er.textContent='Tick the box to continue.';er.hidden=false;return}
+  er.textContent='Couldn’t send that. Check your details and try again.';
   var name=(d.get('name')||'').trim(),contact=(d.get('contact')||'').trim(),link=(d.get('link')||'').trim();
   if(!name||contact.length<3||(link&&!/^https?:\/\//i.test(link))){er.hidden=false;return}
   btn.disabled=true;
