@@ -91,6 +91,8 @@ body{
 
 footer{padding-block:0;display:flex;justify-content:center;text-align:center;gap:12px;flex-wrap:wrap;font-size:12px;color:var(--dim);letter-spacing:.08em;text-transform:uppercase}
 
+.privacy-link{margin-left:12px}
+@media (max-width:520px){footer{flex-direction:column;align-items:center;gap:4px}.privacy-link{margin-left:0}}
 /* scanlines */
 .scan{position:fixed;inset:0;pointer-events:none;background:repeating-linear-gradient(to bottom,transparent 0 3px,rgba(255,255,255,.018) 3px 4px)}
 .bar{position:fixed;left:0;right:0;height:14vh;top:-20vh;pointer-events:none;background:linear-gradient(to bottom,transparent,rgba(255,255,255,.035),transparent);animation:roll 16s linear infinite}
@@ -235,7 +237,7 @@ footer{color:#342820}
   </div>
 </main>
 
-<div class="wrap"><footer><span>Your vision, our architecture.</span> <a href="privacy.html" style="margin-left:12px;color:inherit;opacity:.7">Privacy</a></footer></div>
+<div class="wrap"><footer><span>Your vision, our architecture.</span> <a class="privacy-link" href="privacy.html" style="color:inherit;opacity:.7">Privacy</a></footer></div>
 <script>
 (function(){
   var count=document.querySelector('.cnt'), total=document.querySelectorAll('.ln').length;
